@@ -1,0 +1,35 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int  MaximumConsecutiveOne(const vector<int>& nums){
+    int n= nums.size();
+    int maxi=0;
+    int count=0;
+    for(int i=0;i<n;i++){
+        if(nums[i]==1){
+            count++;
+            maxi=max(count,maxi);
+        }
+        else{
+            count=0;
+        }
+       
+    }
+    return maxi;
+   
+}
+
+int main(){
+    vector<int> v = {1,1,0,1,1,1,0,1,1};
+   
+
+    int store = MaximumConsecutiveOne(v);
+    cout << " Maximum Consecutive One: " << store;
+
+    return 0;
+}
+
+// tc =O(n)
+// sc= O(1)
