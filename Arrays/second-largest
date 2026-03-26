@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+#include <climits>
+using namespace std;
+
+int SecondlargestElement(const vector<int>& nums){
+    int n = nums.size();
+    int largest = nums[0];
+    int secondlargest = INT_MIN;
+    // used this beacuse if we want [-1000,-10000] and  int secondlargest = -1;
+    // then it never gives me option to compare [-1000,-10000] because if gives
+    // arr[i]>secondlargest-> -1000> -1 false  like this 
+    
+    for(int i = 0; i < n; i++){
+        if(nums[i] > largest){
+            secondlargest = largest;
+            largest = nums[i];
+        }
+        else if(nums[i] < largest && nums[i] > secondlargest){
+            secondlargest = nums[i];
+        }
+    }
+
+    if(secondlargest == INT_MIN) return -1;
+    return secondlargest;
+}
+
+int main(){
+    vector<int> v = {1,2,3,4,5,6};
+    v.push_back(7);
+
+    int store = SecondlargestElement(v);
+    cout << "Second largest element: " << store;
+
+    return 0;
+}
+
+// tc =O(n)
+// sc= O(1)
