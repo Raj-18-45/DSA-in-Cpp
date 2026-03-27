@@ -1,0 +1,30 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int n = nums.size();
+
+        int sum = (n * (n + 1)) / 2; // expected sum from 0 to n
+        int arrsum = 0;
+
+        for(int num : nums){
+            arrsum += num;
+        }
+
+        return sum - arrsum;
+    }
+};
+
+int main() {
+    vector<int> nums = {3, 0, 1}; // example input
+
+    Solution obj;
+    int result = obj.missingNumber(nums);
+
+    cout << "Missing number is: " << result << endl;
+
+    return 0;
+}
