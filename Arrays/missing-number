@@ -1,0 +1,32 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+    int missingNumber(vector<int>& nums) {
+        // optimal Solution
+        int n = nums.size();
+
+        int sum = (n * (n + 1)) / 2;  // expected sum from 0 to n
+        int arrsum = 0;
+
+        for(int num : nums){
+            arrsum += num;
+        }
+
+        return sum - arrsum;
+    }
+
+
+int main() {
+    vector<int> nums = {3, 0, 1}; 
+
+    
+    int missing = missingNumber(nums);
+
+    cout << "Missing number is: " << missing << endl;
+
+    return 0;
+}
+// tc=O(n)
+// sc O(1)
