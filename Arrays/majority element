@@ -1,0 +1,49 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int majorityElement(vector<int>& nums) {
+    int count = 0;
+    int candidate = 0;
+
+    // Step 1: Find candidate (Boyer-Moore)
+    for(int num : nums){
+        if(count == 0){
+            candidate = num;
+        }
+
+        if(num == candidate){
+            count++;
+        } else {
+            count--;
+        }
+    }
+
+    // Step 2: Verify candidate
+    count = 0;
+    for(int num : nums){
+        if(num == candidate){
+            count++;
+        }
+    }
+
+    if(count > nums.size()/2){
+        return candidate;
+    }
+
+    return -1; // if no majority element
+}
+
+int main() {
+    vector<int> nums = {2, 2, 1, 1, 1, 2, 2};
+
+    int result = majorityElement(nums);
+
+    if(result != -1){
+        cout << "Majority Element: " << result << endl;
+    } else {
+        cout << "No Majority Element found" << endl;
+    }
+
+    return 0;
+}
