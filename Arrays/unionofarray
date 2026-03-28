@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+#include <set>
+using namespace std;
+vector<int> unionArray( vector<int> nums1, vector<int> nums2){
+    set<int> st;
+    // insert elements from nums1
+        for(int num : nums1){
+            st.insert(num);
+        }
+
+        // insert elements from nums2
+        for(int num : nums2){
+            st.insert(num);
+        }
+
+        // convert set to vector
+        vector<int> ans(st.begin(), st.end());
+
+        return ans;
+    // tc=0(n+m)
+    // sc=02(n+m)
+    
+    
+    
+}
+int main(){
+    vector<int> nums1={1,2,2,3};
+    vector<int> nums2={2,3,4};
+     vector<int> result = unionArray(nums1, nums2);
+
+    cout << "Union: ";
+    for(int x : result){
+        cout << x << " ";
+    }
+
+    return 0;
+}
+    
