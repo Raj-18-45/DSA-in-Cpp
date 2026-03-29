@@ -1,0 +1,56 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Function to generate a single row of Pascal's Triangle
+vector<int> generaterow(int row){
+    long long ans = 1;          // to store current value (nCr)
+    vector<int> ansRow;
+
+    // first element is always 1
+    ansRow.push_back(1);
+
+    // calculate remaining elements of the row
+    for(int col = 1; col < row; col++){
+        // using relation:
+        // next = previous * (row - col) / col
+        ans = ans * (row - col);
+        ans = ans / col;
+
+        ansRow.push_back(ans);
+    }
+
+    return ansRow;
+}
+
+// Function to generate full Pascal Triangle
+vector<vector<int>> pascalTriangleIII(int n){
+    vector<vector<int>> Pascaltriangle;
+
+    // generate each row from 1 to n
+    for(int row = 1; row <= n; row++){
+        Pascaltriangle.push_back(generaterow(row));
+    }
+
+    return Pascaltriangle;
+}
+
+int main(){
+    int n;
+    cout << "Enter number of rows: ";
+    cin >> n;
+
+    vector<vector<int>> result = pascalTriangleIII(n);
+
+    cout << "\nPascal Triangle:\n";
+
+    // printing the triangle
+    for(auto &row : result){
+        for(auto &val : row){
+            cout << val << " ";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
