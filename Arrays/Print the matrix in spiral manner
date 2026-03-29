@@ -1,0 +1,71 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<vector<int>> matrix = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+
+    vector<int> ans; 
+    // Number of rows
+    int n = matrix.size();
+
+    // Number of columns
+    int m = matrix[0].size();
+    
+    // Initialize pointers for traversal
+    int top = 0, left = 0;
+    int bottom = n - 1, right = m - 1;
+
+    while(left<=right && top<=bottom){
+
+        //left to right
+        // your top is constant 
+        for(int i=left;i<=right;i++){
+            ans.push_back(matrix[top][i]);
+        }
+
+        // go to next row
+        top++;
+
+        // top to bottom
+        // your right is constant
+        for(int i=top;i<=bottom;i++){
+            ans.push_back(matrix[i][right]);
+        }
+
+        // come backward to previous columns
+        right--;
+
+        // right to left
+        // bottom is constant
+        if(top<=bottom){
+            for(int i=right;i>=left;i--){
+                ans.push_back(matrix[bottom][i]);
+            }
+
+            // go to upper row
+            bottom--;
+        }
+        
+        // bottom to top
+        // left is constant
+        if(left<=right){
+            for(int i=bottom;i>=top;i--){
+                ans.push_back(matrix[i][left]);
+            }
+            left++;
+        }
+    }
+
+    // Print result
+    cout << "Spiral Order: ";
+    for(int x : ans){
+        cout << x << " ";
+    }
+
+    return 0;
+}
