@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <climits>
+
+using namespace std;
+// idea is if someone wants it should be greater than element from it's left side
+// “From right, keep track of maximum so far — if current ≥ max → leader”
+vector<int> leaders(vector<int>& nums) {
+    vector<int> store;
+    int n = nums.size();
+    int maxi = INT_MIN;
+
+    for(int i = n - 1; i >= 0; i--){
+        if(nums[i] > maxi){   // strict leader condition
+            store.push_back(nums[i]);
+            maxi = nums[i];
+        }
+    }
+
+    reverse(store.begin(), store.end());
+    return store;
+}
+
+int main() {
+    vector<int> nums = {0, 0, 0, 0, 0};
+
+    vector<int> result = leaders(nums);
+
+    cout << "Leaders are: ";
+    for(int x : result){
+        cout << x << " ";
+    }
+
+    return 0;
+}
