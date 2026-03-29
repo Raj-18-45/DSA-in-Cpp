@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+long long nCr(int n, int r) {
+    if (r > n) return 0;
+
+    // symmetry optimization
+    if (r > n - r) {
+        r = n - r;
+    }
+
+    long long res = 1;
+
+    for (int i = 0; i < r; i++) {
+        cout << "\nStep " << i + 1 << ":\n";
+        cout << "Before: res = " << res << endl;
+
+        res = res * (n - i);
+        cout << "After multiply with (" << n - i << "): " << res << endl;
+
+        res = res / (i + 1);
+        cout << "After divide by (" << i + 1 << "): " << res << endl;
+    }
+
+    return res;
+}
+
+int main() {
+    int n, r;
+
+    cout << "Enter n and r: ";
+    cin >> n >> r;
+
+    long long result = nCr(n, r);
+
+    cout << "\nFinal Answer (nCr) = " << result << endl;
+
+    return 0;
+}
