@@ -1,0 +1,43 @@
+#include <iostream>
+#include <vector>
+#include <climits>   // for INT_MIN
+using namespace std;
+
+int maxSubArray(vector<int>& nums) {
+    int n = nums.size();
+
+    // Initialize maxi to the smallest possible value
+    // This ensures correct result even if all elements are negative
+    int maxi = INT_MIN;
+
+    // This will store the current subarray sum
+    int sum = 0;
+
+    for(int i = 0; i < n; i++) {
+        // Add current element to the running sum
+        sum = sum + nums[i];
+
+        // Update maximum sum found so far
+        maxi = max(sum, maxi);
+
+        // If sum becomes negative, reset it to 0
+        // because carrying a negative sum will reduce future sums
+        if(sum < 0) {
+            sum = 0;
+        }
+    }
+
+    // Return the maximum subarray sum
+    return maxi;
+}
+
+int main() {
+    // Example test case
+    vector<int> nums = {-2, -3, -7, -2, -10, -4};
+
+    int result = maxSubArray(nums);
+
+    cout << "Maximum Subarray Sum: " << result << endl;
+
+    return 0;
+}
