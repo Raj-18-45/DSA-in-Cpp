@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void nextPermutation(vector<int>& nums) {
+    int n = nums.size();
+    
+    int i;
+    
+    // Step 1: Find break point using for loop
+    for (i = n - 2; i >= 0; i--) {
+        if (nums[i] < nums[i + 1]) {
+            break;
+        }
+    }
+    
+    // Step 2: If break point found
+    if (i >= 0) {
+        int j;
+        
+        // Find next greater element using for loop
+        for (j = n - 1; j > i; j--) {
+            if (nums[j] > nums[i]) {
+                break;
+            }
+        }
+        
+        // Swap
+        swap(nums[i], nums[j]);
+    }
+    
+    // Step 3: Reverse remaining part
+    reverse(nums.begin() + i + 1, nums.end());
+}
+
+int main() {
+    vector<int> nums = {1, 2, 3};
+    
+    nextPermutation(nums);
+    
+    for (int x : nums) {
+        cout << x << " ";
+    }
+    
+    return 0;
+}
